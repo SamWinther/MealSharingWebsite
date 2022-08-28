@@ -1,7 +1,7 @@
 {
   "name": "meal-sharing",
   "version": "1.0.0",
-  "description": "Website for sharing meals",
+  "description": "Website for sharing meals. Made by Sam Tarokh",
   "engines": {
     "node": "16.16.0"
   },
