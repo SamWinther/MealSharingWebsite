@@ -11,6 +11,7 @@ const knex = require("knex")({
     database: process.env.DB_NAME,
   },
   pool: { min: 0, max: 7 },
+  debug: true
 });
 
 // Check that the connection works

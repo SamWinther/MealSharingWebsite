@@ -4,7 +4,7 @@ var router = express.Router();
 
 var knex = require('../database')
 
-router.get('/', async function(req, res, next) {
+router.get('/reservation', async function(req, res, next) {
   var RandomReservations = await knex.select('*').from('reservation').orderByRaw('RAND()').limit(1);
   console.log('R06_randomReservation.js is called');
   res.send(JSON.stringify(RandomReservations))

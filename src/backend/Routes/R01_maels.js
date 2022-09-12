@@ -7,7 +7,7 @@ var router = express.Router();
 
 var knex = require('../database')
 
-router.get('/', async function(req, res, next) {
+router.get('/meals', async function(req, res, next) {
   var meals = await knex.select('*').from('meal');
   var mealsWithReviews = await Promise.all(meals.map(async meal => {
     meal.reviews = await knex.select('*').from('review').where('meal_id', meal.id);

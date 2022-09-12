@@ -4,7 +4,7 @@ var router = express.Router();
 
 var knex = require('../database')
 
-router.get('/', async function(req, res, next) {
+router.get('/meal', async function(req, res, next) {
 
   var randomMeal = await knex.select('*').from('meal').orderByRaw('RAND()').limit(1);
   var randomMealsWithReviews = await Promise.all(randomMeal.map(async meal => {

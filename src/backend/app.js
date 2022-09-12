@@ -17,27 +17,56 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 //******************************************* */
-//Route /meals
-var mealsRoute = require('./Routes/R01_maels');
- app.use('/meals', mealsRoute);
-//Route /cheap-meals:	Respond with the json for all the meals (including it's reviews) that are cheap (you define what a cheap meal is)
- var cheapMealsRoute = require('./Routes/R02_cheapMaels');
- app.use('/cheap-meals', cheapMealsRoute);
-//Route /large-meals: Respond with the json for all the meals (including it's reviews) that can fit lots of people
- var largeMealsRoute = require('./Routes/R03_largeMaels');
- app.use('/large-meals', largeMealsRoute);
-//Route /meal: Respond with the json for a random meal (including it's reviews)
-var randomMealRoute = require('./Routes/R04_randomMael');
-app.use('/meal', randomMealRoute);
-//Route /reservations: Respond with the json for all reservations
-var reservationsRoute = require('./Routes/R05_reservations');
-app.use('/reservations', reservationsRoute);
-//Route /reservation: 	Respond with the json for a random reservation
-var randomReservationRoute = require('./Routes/R06_randomReservation');
-app.use('/reservation', randomReservationRoute);
 
+var mealsRoute = require('./Routes/R01_maels');
+var cheapMealsRoute = require('./Routes/R02_cheapMaels');
+var largeMealsRoute = require('./Routes/R03_largeMaels');
+var randomMealRoute = require('./Routes/R04_randomMael');
+var reservationsRoute = require('./Routes/R05_reservations');
+var randomReservationRoute = require('./Routes/R06_randomReservation');
+var api_meals_id = require('./Routes/R07_api_meals_id');
+var api_meals = require('./Routes/R08_api_meals');
+var api_reservations_id = require('./Routes/R09_api_reservations_id');
+var api_reservations = require('./Routes/R10_api_reservations');
+var api_rewievs_id = require('./Routes/R11_api_reviews_id');
+var api_rewievs = require('./Routes/R12_api_reviews');
+
+var mealWithID = require('./Routes/R99_mealWithID');
+
+app.use(mealsRoute);
+app.use(cheapMealsRoute);
+app.use(largeMealsRoute);
+app.use(randomMealRoute);
+app.use(reservationsRoute);
+app.use(randomReservationRoute);
+app.use(api_meals_id);
+app.use(api_meals);
+app.use(api_reservations_id);
+app.use(api_reservations);
+app.use(api_rewievs_id);
+app.use(api_rewievs);
+
+app.use(mealWithID);
+
+//Route /*: 	to capture any wrong request.
 app.use(function(req, res) {
-  res.send('This is not a valid address. <br> Try one of these route: <br>1. /meals <br>2. /cheap-meals <br>3. /large-meals <br>4. /meal <br>5. /reservations <br>6. /reservation <br>')
+  let invalidURL = 'This is not a valid address.';
+  invalidURL +=  '<br> Try one of these route: ';
+  invalidURL +=  '<br>01. /meals';
+  invalidURL +=  '<br>02. /cheap-meals';
+  invalidURL +=  '<br>03. /large-meals';
+  invalidURL +=  '<br>04. /meal';
+  invalidURL +=  '<br>05. /reservations';
+  invalidURL +=  '<br>06. /reservation';
+  invalidURL +=  '<br>07. /api/meals/:id';
+  invalidURL +=  '<br>08. /api/meals?title=un&maxprice=17&createdAfter=2022-07-20&limit=1';
+  invalidURL +=  '<br>09. /api/reservations/:id';
+  invalidURL +=  '<br>10. /api/reservations';
+  invalidURL +=  '<br>11. /api/reviews/:id';
+  invalidURL +=  '<br>12. /api/reviews';
+
+  res.send(invalidURL);
+  // res.send('')
 });
 //******************************************* */
 
