@@ -6,7 +6,7 @@ var router = express.Router();
 var knex = require('../database')
 
 router.get('/api/reviews/:id', async function(req, res, next) {
-  console.log('R11_api_reviews_id.js  is called');
+  console.log('R11_api_reviews_id.js =>GET is called');
 
   requestedID = req.params.id;  
   try {
@@ -14,7 +14,7 @@ router.get('/api/reviews/:id', async function(req, res, next) {
     res.send(JSON.stringify(mealWithID))
   }
   catch (e) {
-    console.log("Something went wrong in file R11_api_reviews_id.js");
+    console.log("Something went wrong in file R11_api_reviews_id.js =>GET route");
     console.log(e);
   }
 });

@@ -1,13 +1,12 @@
 //Route /api/meals Respond with the json for all meals
 var express = require('express');
 var router = express.Router();
+toLowerKeys = require('../toolbox/toLowerKeys');
 
 var knex = require('../database')
 
-var toLowerKeys = require('../toolbox/toLowerKeys');
-
 router.get('/api/meals', async function(req, res, next) {
-  console.log('R08_api_meals.js is called');
+  console.log('R08_api_meals.js =>GET is called');
 
   var queryparameters = toLowerKeys(req.query);
   console.log(queryparameters);

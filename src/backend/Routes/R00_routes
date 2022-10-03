@@ -1,0 +1,77 @@
+function addAllRoutes(app) {
+    var mealsRoute = require('./R01_maels');
+    var cheapMealsRoute = require('./R02_cheapMaels');
+    var largeMealsRoute = require('./R03_largeMaels');
+    var randomMealRoute = require('./R04_randomMael');
+    var reservationsRoute = require('./R05_reservations');
+    var randomReservationRoute = require('./R06_randomReservation');
+    var api_meals_id_GET = require('./R07_1_GET_api_meals_id');
+    var api_meals_id_DEL = require('./R07_2_DEL_api_meals_id');
+    var api_meals_id_PUT = require('./R07_3_PUT_api_meals_id');
+    var api_meals_GET = require('./R08_1_GET_api_meals');
+    var api_meals_POST = require('./R08_2_POST_api_meals');
+    var api_reservations_id_GET = require('./R09_1_GET_api_reservations_id');
+    var api_reservations_id_PUT = require('./R09_2_PUT_api_reservations_id');
+    var api_reservations_id_DEL = require('./R09_3_DEL_api_reservations_id');
+    var api_reservations_GET = require('./R10_1_GET_api_reservations');
+    var api_reservations_POST = require('./R10_2_POST_api_reservations');
+    var api_rewievs_id_GET = require('./R11_1_GET_api_reviews_id');
+    var api_rewievs_id_PUT = require('./R11_2_PUT_api_reviews_id');
+    var api_rewievs_id_DEL = require('./R11_3_DEL_api_reviews_id');
+    var api_rewievs_GET = require('./R12_1_GET_api_reviews');
+    var api_rewievs_POST = require('./R12_2_POST_api_reviews');
+    var mealWithID = require('./R99_mealWithID');
+
+    app.use(mealsRoute);
+    app.use(cheapMealsRoute);
+    app.use(largeMealsRoute);
+    app.use(randomMealRoute);
+    app.use(reservationsRoute);
+    app.use(randomReservationRoute);
+    app.use(api_meals_id_GET);
+    app.use(api_meals_id_DEL);
+    app.use(api_meals_id_PUT);
+    app.use(api_meals_GET);
+    app.use(api_meals_POST);
+    app.use(api_reservations_id_GET);
+    app.use(api_reservations_id_PUT);
+    app.use(api_reservations_id_DEL);
+    app.use(api_reservations_GET);
+    app.use(api_reservations_POST);
+    app.use(api_rewievs_id_GET);
+    app.use(api_rewievs_id_PUT);
+    app.use(api_rewievs_id_DEL);
+    app.use(api_rewievs_GET);
+    app.use(api_rewievs_POST);
+
+    app.use(mealWithID);
+    //Route /*: 	to capture any wrong request.
+    app.use(function(req, res) {
+        // const root = ReactDOM.createRoot(
+        //   document.getElementById('root')
+        // );
+        // const element = <h1>Hello, world</h1>;
+        // root.render(element);
+        let invalidURL = 'This is not a valid address.';
+        invalidURL +=  '<br> Try one of these route: ';
+        invalidURL +=  '<br>01. /meals';
+        invalidURL +=  '<br>02. /cheap-meals';
+        invalidURL +=  '<br>03. /large-meals';
+        invalidURL +=  '<br>04. /meal';
+        invalidURL +=  '<br>05. /reservations';
+        invalidURL +=  '<br>06. /reservation';
+        invalidURL +=  '<br>07. /api/meals/:id';
+        invalidURL +=  '<br>08. /api/meals?title=un&maxprice=17&createdAfter=2022-07-20&limit=1';
+        invalidURL +=  '<br>09. /api/reservations/:id';
+        invalidURL +=  '<br>10. /api/reservations';
+        invalidURL +=  '<br>11. /api/reviews/:id';
+        invalidURL +=  '<br>12. /api/reviews';
+    
+        res.send(invalidURL);
+        res.send('')
+     });
+
+return app;
+}
+
+module.exports = addAllRoutes;

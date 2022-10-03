@@ -9,7 +9,7 @@ router.get('/api/reviews', async function(req, res, next) {
   console.log('R12_api_reviews.js  is called');
 
   try {
-    var mealWithID = await knex.select('*').from('reservation');
+    var mealWithID = await knex.select('*').from('review');
     res.send(JSON.stringify(mealWithID))
   }
   catch (e) {

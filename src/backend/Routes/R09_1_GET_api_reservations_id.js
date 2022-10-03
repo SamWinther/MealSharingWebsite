@@ -6,15 +6,15 @@ var router = express.Router();
 var knex = require('../database')
 
 router.get('/api/reservations/:id', async function(req, res, next) {
-  console.log('R09_api_reservation_id.js  is called');
+  console.log('R09_api_reservation_id.js =>GET is called');
 
   requestedID = req.params.id;  
   try {
-    var mealWithID = await knex.select('*').from('reservation').where('id', requestedID);
+    var mealWithID = await knex('reservation').where('id', requestedID);
     res.send(JSON.stringify(mealWithID))
   }
   catch (e) {
-    console.log("Something went wrong in file R09_api_reservation_id.js");
+    console.log("Something went wrong in file R09_api_reservation_id.js =>GET route");
     console.log(e);
   }
 });
